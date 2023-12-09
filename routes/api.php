@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\ProductsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +26,4 @@ Route::controller(AuthController::class)->group(function () {
 
 
 Route::post('/adduser',[UsersController::class,'add_user']);
+Route::post('/addproduct',[ProductsController::class,'add_product']);

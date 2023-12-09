@@ -6,6 +6,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\CartsController;
+use App\Http\Controllers\OrdersController;
+use App\Http\Controllers\TransactionsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,3 +37,7 @@ Route::get('/getproducts', [ProductsController::class, 'get_products']);
 
 Route::post('/carts/create', [CartsController::class, 'create']);
 Route::post('/carts/item', [CartsController::class, 'add_item']);
+
+Route::post('/create/order',[OrdersController::class,'create_order']);
+
+Route::post('/create/transaction',[TransactionsController::class,'create_transaction']);

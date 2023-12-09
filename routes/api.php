@@ -27,4 +27,6 @@ Route::controller(AuthController::class)->group(function () {
 
 Route::post('/adduser',[UsersController::class,'add_user']);
 Route::post('/addproduct',[ProductsController::class,'add_product']);
-Route::delete('/deleteproduct/{productId}', [ProductsController::class, 'deleteProduct']);
+Route::delete('/deleteproduct/{productId}', [ProductsController::class, 'delete_product']);
+Route::post('/updateproduct', [ProductsController::class, 'update_product']);
+Route::get('/getproducts', [ProductsController::class, 'get_products']);

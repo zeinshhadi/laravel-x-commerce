@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\CartsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,3 +31,7 @@ Route::post('/addproduct',[ProductsController::class,'add_product']);
 Route::delete('/deleteproduct/{productId}', [ProductsController::class, 'delete_product']);
 Route::post('/updateproduct', [ProductsController::class, 'update_product']);
 Route::get('/getproducts', [ProductsController::class, 'get_products']);
+
+
+Route::post('/carts/create', [CartsController::class, 'create']);
+Route::post('/carts/item', [CartsController::class, 'add_item']);

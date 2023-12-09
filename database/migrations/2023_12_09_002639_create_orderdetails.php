@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreign('order_id')->references('order_id')->on('orders');
             $table->foreign('product_id')->references('product_id')->on('products');
             $table->decimal('price');
-            $table->integer('stock_quantity');
+            $table->integer('quantity');
          
         });
     }

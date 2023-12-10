@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use App\Models\Order;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
@@ -14,15 +15,15 @@ class TransactionsController extends Controller
         $user= Auth::user();
         $user_id = $user->user_id;
         $order = Order::where('user_id',$user_id)->latest()->first();
-
- 
+        $cart = Cart::where('user_id',$user_id)->latest()->first();
+      
   
     $transaction = Transaction::create([
         
         "order_id"=>$order->order_id,
         "user_id"=>$user_id,
         "payment_method"=>$req->payment_method,
-        "total_amount"=>$req->total_amount,
+        "total_amount"=>$cart->total_price,
 
     ]);
      return response()->json(['message' => $user_id]);

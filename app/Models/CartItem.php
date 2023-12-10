@@ -14,6 +14,6 @@ class CartItem extends Model
 
     public function orderItem()
     {
-        return $this->hasOne(OrderItem::class, 'cart_id', 'cart_id');
+        return $this->hasOne(CartItem::class, 'cart_id', 'cart_id');
     }
 }

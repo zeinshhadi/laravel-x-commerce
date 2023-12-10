@@ -113,9 +113,10 @@ public function remove_item(Request $req){
             if(!$cart_item){
                 return response()->json(['error' => 'Item not found in the cart']);
             }
-       
+          
+  
                      $cart_item->delete();
-
+         
                      $cart->save();
             
                      return response()->json(['message' => 'Item removed from the cart']);

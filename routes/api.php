@@ -41,3 +41,4 @@ Route::post('/carts/item', [CartsController::class, 'add_item']);
 Route::post('/create/order',[OrdersController::class,'create_order']);
 
 Route::post('/create/transaction',[TransactionsController::class,'create_transaction']);
+Route::get('/get/transaction',[TransactionsController::class,'get_transaction']);

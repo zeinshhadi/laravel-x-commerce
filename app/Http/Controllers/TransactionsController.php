@@ -28,4 +28,23 @@ class TransactionsController extends Controller
      return response()->json(['message' => $user_id]);
        }
   }
+  
+  public function get_transaction(){
+    if(Auth()->check()){
+      $user = Auth::user();
+      if($user){
+      $user_id = $user->user_id;
+      $transaction=Transaction::where('user_id',$user_id)->get();
+                  return response()->json([
+                "products" => $transaction,
+                "message" => 'Transactions displayed successfully'
+            ]);
+}else{
+  return response()->json(['message :', 'Unauthorizaed']);
+}
+    }else{
+    return response()->json(['message :', 'Unauthorizaed']);
+  }
+}
+
 }

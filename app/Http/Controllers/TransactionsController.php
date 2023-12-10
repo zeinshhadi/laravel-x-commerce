@@ -35,10 +35,11 @@ class TransactionsController extends Controller
       $user = Auth::user();
       if($user){
       $user_id = $user->user_id;
+      
       $transaction=Transaction::where('user_id',$user_id)->get();
-      if(!$transaction){
+      if($transaction){
                           return response()->json([
-                "products" => $transaction,
+                "Transaction" => $transaction,
                 "message" => 'Transactions displayed successfully'
             ]);
       }else{

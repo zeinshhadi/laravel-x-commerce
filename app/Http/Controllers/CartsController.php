@@ -73,4 +73,27 @@ class CartsController extends Controller
           return response()->json(['error'=>'unauthorized']);
         }
 }
+  public function get_cart(){
+    if(Auth()->check()){
+      $user = Auth::user();
+      if($user){
+      $user_id = $user->user_id;
+      $cart=Cart::where('user_id',$user_id)->get();
+      if($cart){
+                return response()->json([
+                "carts" => $cart,
+                "message" => 'Carts displayed successfully'
+            ]);
+      }else{
+        return response()->json(['message : No carts found']);
+      }
+
+}else{
+  return response()->json(['message : Unauthorizaed']);
+}
+    }else{
+    return response()->json(['message :', 'Unauthorizaed']);
+  }
+}
+
 }

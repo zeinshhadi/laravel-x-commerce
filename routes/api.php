@@ -37,6 +37,7 @@ Route::get('/getproducts', [ProductsController::class, 'get_products']);
 
 Route::post('/carts/create', [CartsController::class, 'create']);
 Route::post('/carts/item', [CartsController::class, 'add_item']);
+Route::get('/carts/display', [CartsController::class, 'get_cart']);
 
 Route::post('/create/order',[OrdersController::class,'create_order']);
 

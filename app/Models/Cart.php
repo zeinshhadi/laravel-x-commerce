@@ -9,8 +9,10 @@ class Cart extends Model
     protected $primaryKey = 'cart_id';
     protected $fillable = ['user_id', 'created_at', 'updated_at'];
 
+
     public function cartItems()
     {
-        return $this->belongsToMany(CartItem::class, 'cart_id', 'cart_id');
+        return $this->hasMany(CartItem::class, 'cart_id', 'cart_id');
     }
+
 }

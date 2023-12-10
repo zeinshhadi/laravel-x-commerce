@@ -26,7 +26,7 @@ class TransactionsController extends Controller
         "total_amount"=>$cart->total_price,
 
     ]);
-     return response()->json(['message' => $user_id]);
+     return response()->json(['message' =>$transaction]);
        }
   }
   
@@ -38,7 +38,7 @@ class TransactionsController extends Controller
       
       $transaction=Transaction::where('user_id',$user_id)->get();
       if($transaction){
-                          return response()->json([
+                return response()->json([
                 "Transaction" => $transaction,
                 "message" => 'Transactions displayed successfully'
             ]);

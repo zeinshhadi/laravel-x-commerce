@@ -11,8 +11,9 @@ class Order extends Model
     protected $primaryKey = 'order_id';
     protected $fillable = ["cart_id","user_id"];
 
-    public function items() {
-        return $this->hasMany(OrderItem::class);
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'cart_id', 'cart_id');
     }
 
 }

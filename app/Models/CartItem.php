@@ -7,12 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class CartItem extends Model
 {
     protected $table = 'cart_items';
+    
+    protected $primaryKey = 'cart_id';
 
     protected $fillable = ['cart_id', 'product_id', 'quantity'];
 
-    public function product()
+    public function orderItem()
     {
-        return $this->belongsToMany(Product::class, 'product_id', 'product_id');
+        return $this->hasOne(OrderItem::class, 'cart_id', 'cart_id');
     }
-    
 }

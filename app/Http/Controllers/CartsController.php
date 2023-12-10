@@ -96,4 +96,37 @@ class CartsController extends Controller
   }
 }
 
+
+public function remove_item(Request $req){
+
+
+    if(Auth()->check()){
+        $user = Auth::user();
+        if($user){
+            $cart = Cart::where('user_id', $user->user_id)->latest()->first();
+
+            if(!$cart || !$req->product_id){
+                return response()->json(['error' => 'Cannot find cart or product']);
+            }
+            $cart_item = CartItem::where('cart_id', $cart->cart_id)->where('product_id', $req->product_id)->first();
+
+            if(!$cart_item){
+                return response()->json(['error' => 'Item not found in the cart']);
+            }
+       
+                     $cart_item->delete();
+
+                     $cart->save();
+            
+                     return response()->json(['message' => 'Item removed from the cart']);
+   
+
+        } else {
+            return response()->json(['error' => 'Cannot remove item']);
+        }
+    } else {
+        return response()->json(['error' => 'Unauthorized']);
+    }
+}
+
 }

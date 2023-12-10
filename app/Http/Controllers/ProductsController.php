@@ -72,9 +72,15 @@ if(auth()->check()){
 
     $user = Auth::user();
     if ($user && $user->role_id == 1) {
+
+
             $id_product = $req->product_id;
+
+
     $product = Product::find($id_product);
+    
     if ($product && $user->user_id == $product->seller_id) {
+
             $updateFields = [
             'name' => $req->name,
             'description' => $req->description,

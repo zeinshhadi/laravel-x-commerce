@@ -34,22 +34,36 @@ class CartsController extends Controller
         if(Auth()->check()){
             $user=Auth::user();
             if($user){
-                
+              $qunatity= $req->quantity;
               $product = Product::find($req->product_id);
           
                $cart = Cart::where('user_id', $user->user_id)->latest()->first();
-           if(!$cart || !$req->product_id || !$product)
+           if(!$cart || !$req->product_id || !$product || !$qunatity)
            {
             
             return response()->json(['error'=>'cant find cart,or product']);
            }
         
            else{
-                $cart = CartItem::insert([
+            $item_price = $req->quantity * $product->price;
+         
+                $cart_item = CartItem::insert([
                     'cart_id' => $cart->cart_id,
                     'product_id'=>$req->product_id,
-                    'quantity'=>$req->quantity
+                    'quantity'=>$req->quantity,
+                    'total_price' => $req->quantity * $product->price,
                 ]);
+                $cart = Cart::find($cart->cart_id);
+
+                $old_price = $cart->total_price;
+
+                 $total= $old_price+$item_price;
+
+                $cart ->total_price =  $total;
+                  $cart->save();
+
+                 return response()->json(['message '=>$total]);
+
                 return response()->json(['message '=>'added item']);
                 }
             }else{

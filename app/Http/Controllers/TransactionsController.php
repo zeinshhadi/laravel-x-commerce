@@ -35,12 +35,17 @@ class TransactionsController extends Controller
       if($user){
       $user_id = $user->user_id;
       $transaction=Transaction::where('user_id',$user_id)->get();
-                  return response()->json([
+      if(!$transaction){
+                          return response()->json([
                 "products" => $transaction,
                 "message" => 'Transactions displayed successfully'
             ]);
+      }else{
+        return response()->json(['message : No transactions found']);
+      }
+
 }else{
-  return response()->json(['message :', 'Unauthorizaed']);
+  return response()->json(['message : Unauthorizaed']);
 }
     }else{
     return response()->json(['message :', 'Unauthorizaed']);

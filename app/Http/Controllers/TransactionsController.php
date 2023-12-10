@@ -14,14 +14,14 @@ class TransactionsController extends Controller
         $user= Auth::user();
         $user_id = $user->user_id;
         $order = Order::where('user_id',$user_id)->latest()->first();
-        $order_id = $order->order_id;
+
  
   
     $transaction = Transaction::create([
         
         "order_id"=>$order->order_id,
         "user_id"=>$user_id,
-        "payment_method"=>$req->method,
+        "payment_method"=>$req->payment_method,
         "total_amount"=>$req->total_amount,
 
     ]);

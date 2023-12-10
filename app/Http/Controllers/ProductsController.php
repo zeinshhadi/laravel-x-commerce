@@ -20,7 +20,7 @@ public function add_product(Request $req){
  
     if (auth()->check() ) {
       
-        $user = auth()->user();
+        $user = Auth::user();
         if ($user && $user->role_id == 1) {
         $product = Product::create([
             "name" => $req->name,
@@ -75,11 +75,11 @@ if(auth()->check()){
             $id_product = $req->product_id;
     $product = Product::find($id_product);
     if ($product && $user->user_id == $product->seller_id) {
-        $updateFields = [
-    'name' => $req->name,
-    'description' => $req->description,
-    'price' => $req->price,
-    'stock_quantity' => $req->stock_quantity,
+            $updateFields = [
+            'name' => $req->name,
+            'description' => $req->description,
+            'price' => $req->price,
+            'stock_quantity' => $req->stock_quantity,
 ];
 
 $product->update($updateFields);
@@ -100,7 +100,7 @@ return response()->json(['message' => 'Product updated successfully']);
 
 
 }
-public function get_products(Request $req)
+public function get_products()
 {
     if (auth()->check()) {
         $user = Auth::user();
@@ -123,33 +123,3 @@ public function get_products(Request $req)
 }
 
 }
-
-
-    
-
-
-
-// if(auth()->check()){
-
-//     $user = Auth::user();
-//     if ($user && $user->role_id == 1) {
-//             $id_product = $req->product_id;
-//     $product = Product::find($id_product);
-//     if ($product && $user->user_id == $product->seller_id) {
-
-
-// return response()->json(['message' => 'Product updated successfully']);
-//   }else{
-//         return response()->json(['error'=>'Unauthorized'],401);
-//     }
-
-
-//     }else{
-//         return response()->json(['error'=>'Unauthorized'],401);
-//     }
-// }else{
-//         return response()->json(['error'=>'Unauthorized'],401);
-//     }
-
-
-// }

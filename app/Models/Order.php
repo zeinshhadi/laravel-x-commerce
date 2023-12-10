@@ -10,4 +10,9 @@ class Order extends Model
     use HasFactory;
     protected $primaryKey = 'order_id';
     protected $fillable = ["cart_id","user_id"];
+
+    public function items() {
+        return $this->hasMany(OrderItem::class);
+    }
+
 }

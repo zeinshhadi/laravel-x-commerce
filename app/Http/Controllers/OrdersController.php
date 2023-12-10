@@ -30,6 +30,6 @@ public function create_order()
         
     ]);
     
-
+ return response()->json(['message :', 'created order successfully'], 404);
 }
 }
